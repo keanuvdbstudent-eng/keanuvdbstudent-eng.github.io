@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kéanu Van den Bergh – Personal Branding</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1a2e4a;
+      --blue:   #2563eb;
+      --light:  #f0f6ff;
+      --grey:   #64748b;
+      --border: #e2e8f0;
+      --white:  #ffffff;
+      --text:   #1e293b;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: #f8fafc;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--navy);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.25);
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    .nav-brand {
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .02em;
+      padding: 18px 0;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: rgba(255,255,255,.7);
+      font-family: inherit;
+      font-size: .92rem;
+      font-weight: 500;
+      padding: 18px 16px;
+      border-bottom: 3px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+    .nav-links button:hover { color: white; }
+    .nav-links button.active {
+      color: white;
+      border-bottom-color: #60a5fa;
+    }
+
+    /* PAGES */
+    .page { display: none; animation: fadeIn .3s ease; }
+    .page.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%);
+      color: white;
+      padding: 72px 24px 60px;
+      text-align: center;
+    }
+    .hero-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,.35);
+      margin: 0 auto 20px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      box-shadow: 0 8px 24px rgba(0,0,0,.3);
+    }
+    .hero-avatar-fallback {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,.3);
+      margin: 0 auto 20px;
+      background: rgba(255,255,255,.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -.01em;
+    }
+    .hero .subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,.75);
+      max-width: 540px;
+      margin: 0 auto 22px;
+      line-height: 1.6;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .hero-tag {
+      background: rgba(255,255,255,.12);
+      color: rgba(255,255,255,.9);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: .82rem;
+      font-weight: 500;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* CARD */
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 36px;
+      margin-bottom: 28px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    }
+    .card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card h2 .icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .card p {
+      color: #374151;
+      line-height: 1.75;
+      font-size: .96rem;
+      margin-bottom: 12px;
+    }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* INFO GRID */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 4px;
+    }
+    .info-item {
+      background: var(--light);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: .88rem;
+    }
+    .info-item .label {
+      color: var(--grey);
+      font-size: .76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 4px;
+    }
+    .info-item .value {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    /* EXPERIENCE */
+    .exp-list { list-style: none; }
+    .exp-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .exp-dot {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--light);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .exp-body .role {
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--navy);
+    }
+    .exp-body .company { color: var(--blue); font-weight: 500; font-size: .88rem; margin-top: 2px; }
+    .exp-body .period { color: var(--grey); font-size: .82rem; margin-top: 2px; }
+    .exp-body .desc { color: #374151; font-size: .88rem; margin-top: 6px; line-height: 1.6; }
+
+    /* SKILLS */
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .skill-tag {
+      background: var(--light);
+      color: var(--navy);
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: .85rem;
+      font-weight: 500;
+    }
+
+    /* QUOTE */
+    .quote {
+      border-left: 4px solid var(--blue);
+      background: var(--light);
+      border-radius: 0 10px 10px 0;
+      padding: 18px 22px;
+      margin-top: 8px;
+    }
+    .quote p { color: #374151; font-style: italic; font-size: .93rem; }
+    .quote .author { font-style: normal; font-weight: 600; color: var(--navy); margin-top: 10px; font-size: .88rem; }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--blue);
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: .88rem;
+      margin-top: 16px;
+      transition: background .2s;
+    }
+    .btn:hover { background: #1d4ed8; }
+    .btn-outline {
+      background: white;
+      color: var(--blue);
+      border: 1.5px solid var(--blue);
+    }
+    .btn-outline:hover { background: var(--light); }
+    .btn-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+
+    /* SECTION HEADING */
+    .skills-section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin: 24px 0 12px;
+    }
+    .skills-section h3:first-child { margin-top: 0; }
+
+    /* PORTFOLIO ITEMS */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 4px;
+    }
+    .portfolio-item {
+      background: var(--light);
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 20px;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .portfolio-item:hover {
+      box-shadow: 0 4px 16px rgba(37,99,235,.12);
+      transform: translateY(-2px);
+    }
+    .portfolio-item .pi-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .portfolio-item .pi-title { font-weight: 700; color: var(--navy); font-size: .95rem; margin-bottom: 6px; }
+    .portfolio-item .pi-desc { color: #374151; font-size: .84rem; line-height: 1.6; }
+    .portfolio-item .pi-tag {
+      display: inline-block;
+      margin-top: 10px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-size: .76rem;
+      font-weight: 600;
+      color: var(--grey);
+    }
+
+    /* SOLLICITATIELOG */
+    .sollicitatie-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+      margin-top: 8px;
+    }
+    .sollicitatie-table th {
+      background: var(--light);
+      color: var(--navy);
+      font-weight: 700;
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 2px solid var(--border);
+    }
+    .sollicitatie-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border);
+      color: #374151;
+      vertical-align: top;
+    }
+    .sollicitatie-table tr:last-child td { border-bottom: none; }
+    .sollicitatie-table tr:hover td { background: #fafbff; }
+    .status-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 600;
+    }
+    .status-sent { background: #dbeafe; color: #1e40af; }
+    .status-open { background: #fef9c3; color: #854d0e; }
+    .status-positive { background: #dcfce7; color: #166534; }
+
+    /* NETWERK */
+    .netwerk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .netwerk-item {
+      background: var(--light);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .netwerk-item .ni-label {
+      font-weight: 700;
+      color: var(--navy);
+      font-size: .88rem;
+      margin-bottom: 4px;
+    }
+    .netwerk-item .ni-desc {
+      color: var(--grey);
+      font-size: .82rem;
+      line-height: 1.5;
+    }
+
+    /* DOELSTELLING BOX */
+    .doelstelling-box {
+      background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 22px 26px;
+      margin-bottom: 20px;
+    }
+    .doelstelling-box .db-title {
+      font-weight: 700;
+      color: var(--navy);
+      font-size: .9rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 6px;
+    }
+    .doelstelling-box .db-value {
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* BLOG */
+    .blog-entry {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-entry:last-child { border-bottom: none; }
+    .blog-entry .be-date {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 6px;
+    }
+    .blog-entry .be-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .blog-entry .be-preview {
+      color: var(--grey);
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+    .blog-coming {
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .blog-coming .big-icon { font-size: 3.5rem; margin-bottom: 20px; }
+    .blog-coming h3 { font-size: 1.3rem; color: var(--navy); margin-bottom: 12px; }
+    .blog-coming p { color: var(--grey); max-width: 420px; margin: 0 auto; line-height: 1.7; }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: .84rem;
+    }
+    footer a { color: #93c5fd; text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.5rem; }
+      .card { padding: 22px 20px; }
+      .nav-links button { padding: 16px 10px; font-size: .82rem; }
+      .sollicitatie-table { font-size: .8rem; }
+      .sollicitatie-table th, .sollicitatie-table td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATIE -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">Kéanu Van den Bergh</a>
+    <div class="nav-links">
+      <button class="active" onclick="showPage('over')">Over mij</button>
+      <button onclick="showPage('portfolio')">Mijn Portfolio</button>
+      <button onclick="showPage('blog')">Mijn Blog</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGINA 1 — OVER MIJ
+══════════════════════════════════════════════════════════════ -->
+<div id="over" class="page active">
+
+  <div class="hero">
+    <img
+      class="hero-avatar"
+      src="foto_cv.jpg"
+      alt="Kéanu Van den Bergh"
+      onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex';"
+    />
+    <div id="avatar-fallback" class="hero-avatar-fallback" style="display:none;">👤</div>
+    <h1>Kéanu Van den Bergh</h1>
+    <p class="subtitle">
+      Marketing- en communicatiestudent aan AP Hogeschool Antwerpen.<br>
+      Gepassioneerd door sales, mensen en de juiste match vinden.
+    </p>
+    <div class="hero-tags">
+      <span class="hero-tag">📍 Antwerpen</span>
+      <span class="hero-tag">🎓 AP Hogeschool</span>
+      <span class="hero-tag">💼 B2B Sales</span>
+      <span class="hero-tag">📣 Marketing &amp; Communicatie</span>
+      <span class="hero-tag">🌐 1.760+ LinkedIn connecties</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- Over mij -->
+    <div class="card">
+      <h2><span class="icon">👋</span> Over mij</h2>
+      <p>
+        Mensen samenbrengen en de juiste match vinden — daar word ik écht enthousiast van.
+        De afgelopen jaren heb ik dat gedaan vanuit sales en recruitment, bij bedrijven als SQUARE CITY
+        en als brand ambassador voor Campari Group. Ik hou ervan om gesprekken te voeren, kansen te
+        spotten en van daaruit iets concreets te bouwen, of dat nu een samenwerking is, een deal of een
+        nieuwe aanwerving.
+      </p>
+      <p>
+        Ondertussen ben ik gestart met de opleiding Communicatie &amp; Marketing aan AP Hogeschool
+        Antwerpen, omdat ik mijn commerciële aanpak wil combineren met een sterkere strategische basis.
+        B2B sales en marketing zijn de richting waar ik naartoe wil.
+      </p>
+      <p>
+        Ik pas me snel aan, werk graag in een snel bewegende omgeving en vind het leuk om te werken met
+        CRM-systemen, prospecteren en klantrelaties uitbouwen. Eerlijkheid, doorzetten en echt luisteren
+        naar de ander — dat zijn de dingen die ik meeneem uit elke job die ik deed.
+      </p>
+    </div>
+
+    <!-- Personalia -->
+    <div class="card">
+      <h2><span class="icon">📋</span> Personalia</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label">Woonplaats</div>
+          <div class="value">Antwerpen</div>
+        </div>
+        <div class="info-item">
+          <div class="label">Opleiding</div>
+          <div class="value">Graduaat Marketing- en Communicatiesupport</div>
+        </div>
+        <div class="info-item">
+          <div class="label">School</div>
+          <div class="value">AP Hogeschool Antwerpen</div>
+        </div>
+        <div class="info-item">
+          <div class="label">Klas</div>
+          <div class="value">GMCS D5</div>
+        </div>
+        <div class="info-item">
+          <div class="label">Talen</div>
+          <div class="value">Nederlands, Engels (vlot), Frans (basis)</div>
+        </div>
+        <div class="info-item">
+          <div class="label">Hobby's &amp; passies</div>
+          <div class="value">Zeescouts, netwerken, sport</div>
+        </div>
+        <div class="info-item">
+          <div class="label">Vrijwilligerswerk</div>
+          <div class="value">Leider Corneel Mayné 2e B.P. Zeescouts</div>
+        </div>
+        <div class="info-item">
+          <div class="label">LinkedIn</div>
+          <div class="value"><a href="https://www.linkedin.com/in/k%C3%A9anu/" target="_blank" style="color:var(--blue);">linkedin.com/in/kéanu</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Werkervaring -->
+    <div class="card">
+      <h2><span class="icon">💼</span> Werkervaring</h2>
+      <ul class="exp-list">
+        <li class="exp-item">
+          <div class="exp-dot">🍹</div>
+          <div class="exp-body">
+            <div class="role">Sales Representative</div>
+            <div class="company">Campari Group – Panama Group</div>
+            <div class="period">mei 2025 – jun. 2025 · Vlaanderen, België · Hybride</div>
+            <div class="desc">Consultative selling in de horecasector. Actief contact met distributeurs en accountmanagers in de FMCG/drankenmarkt.</div>
+          </div>
+        </li>
+        <li class="exp-item">
+          <div class="exp-dot">🔷</div>
+          <div class="exp-body">
+            <div class="role">Business Consultant</div>
+            <div class="company">SQUARE CITY</div>
+            <div class="period">dec. 2024 – mrt. 2025 · Antwerpen · Op locatie</div>
+            <div class="desc">Business development gecombineerd met recruitment. Klantrelaties uitbouwen en prospecteren bij B2B-bedrijven in de regio Antwerpen.</div>
+          </div>
+        </li>
+        <li class="exp-item">
+          <div class="exp-dot">🔷</div>
+          <div class="exp-body">
+            <div class="role">Recruitment Officer</div>
+            <div class="company">SQUARE CITY</div>
+            <div class="period">apr. 2024 – mrt. 2025 · Antwerpen · Op locatie</div>
+            <div class="desc">Kandidaten matchen met vacatures, intakegesprekken voeren en opvolging via het ATS-systeem CATS. Gericht op IT, consulting en business development profielen.</div>
+          </div>
+        </li>
+        <li class="exp-item">
+          <div class="exp-dot">🌟</div>
+          <div class="exp-body">
+            <div class="role">Vertegenwoordiger</div>
+            <div class="company">YEPP</div>
+            <div class="period">sep. 2023 – feb. 2024 · Turnhout · Hybride</div>
+            <div class="desc">Vertegenwoordiging van het merk bij klanten en evenementen. Sterke interne en externe communicatie.</div>
+          </div>
+        </li>
+      </ul>
+      <div class="btn-group">
+        <a class="btn btn-outline" href="https://www.linkedin.com/in/k%C3%A9anu/" target="_blank">Volledige CV op LinkedIn →</a>
+        <a class="btn btn-outline" href="CV_Keanu_Van_den_Bergh.pdf" target="_blank">📄 CV downloaden</a>
+      </div>
+    </div>
+
+    <!-- Opleiding -->
+    <div class="card">
+      <h2><span class="icon">🎓</span> Opleiding</h2>
+      <ul class="exp-list">
+        <li class="exp-item">
+          <div class="exp-dot">📚</div>
+          <div class="exp-body">
+            <div class="role">Graduaat Marketing- en Communicatiesupport</div>
+            <div class="company">AP Hogeschool Antwerpen</div>
+            <div class="period">2025 – heden</div>
+            <div class="desc">Focus op B2B marketing, personal branding, communicatiestrategie en werkplekleren.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Aanbeveling -->
+    <div class="card">
+      <h2><span class="icon">💬</span> Aanbeveling</h2>
+      <div class="quote">
+        <p>
+          "Kéanu heeft altijd een positieve bijdrage geleverd aan het bedrijf.
+          Hij is altijd vriendelijk en beleefd, verzorgd, sociaal ingesteld en hij volgde ook altijd
+          goed mee op wat er nieuw was op de markt. Ook op het gebied van communicatie is hij zeer sterk,
+          zowel binnen het bedrijf als naar onze klanten toe."
+        </p>
+        <div class="author">— Stefanie Walbers, Productmanager bij YEPP</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGINA 2 — MIJN PORTFOLIO
+══════════════════════════════════════════════════════════════ -->
+<div id="portfolio" class="page">
+
+  <div class="hero">
+    <img
+      class="hero-avatar"
+      src="foto_cv.jpg"
+      alt="Kéanu Van den Bergh"
+      onerror="this.style.display='none'; document.getElementById('portfolio-avatar-fallback').style.display='flex';"
+    />
+    <div id="portfolio-avatar-fallback" class="hero-avatar-fallback" style="display:none;">⚡</div>
+    <h1>Mijn Portfolio</h1>
+    <p class="subtitle">
+      Mijn skills, projecten, sollicitaties en netwerk — alles wat ik opgebouwd heb tijdens mijn opleiding en werkervaring.
+    </p>
+  </div>
+
+  <div class="content">
+
+    <!-- Doelstelling -->
+    <div class="card">
+      <h2><span class="icon">🎯</span> Mijn werkplekdoelstelling</h2>
+      <div class="doelstelling-box">
+        <div class="db-title">Gewenste functie</div>
+        <div class="db-value">SDR / Junior Account Manager / Sales Intern</div>
+      </div>
+      <div class="doelstelling-box">
+        <div class="db-title">Domein</div>
+        <div class="db-value">B2B Sales &amp; Sales Development</div>
+      </div>
+      <div class="doelstelling-box">
+        <div class="db-title">Voorkeurssectoren</div>
+        <div class="db-value">Tech/SaaS scale-ups · FMCG/food &amp; drank · Creatieve agencies</div>
+      </div>
+      <div class="doelstelling-box" style="margin-bottom:0;">
+        <div class="db-title">Type bedrijf</div>
+        <div class="db-value">Scale-up, KMO of groeiend bedrijf — voorkeur regio Antwerpen</div>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="card skills-section">
+      <h2><span class="icon">🛠️</span> Mijn vaardigheden</h2>
+
+      <h3>Commercieel &amp; Sales</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">B2B Sales Development</span>
+        <span class="skill-tag">Prospectie &amp; Leadgeneratie</span>
+        <span class="skill-tag">Klantrelatiebeheer</span>
+        <span class="skill-tag">CRM-systemen</span>
+        <span class="skill-tag">Consultative Selling</span>
+        <span class="skill-tag">Recruitment</span>
+        <span class="skill-tag">Hospitality</span>
+      </div>
+
+      <h3>Marketing &amp; Communicatie</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">LinkedIn Marketing</span>
+        <span class="skill-tag">Content creatie</span>
+        <span class="skill-tag">Zoekmachineoptimalisatie</span>
+        <span class="skill-tag">Google Analytics 4</span>
+        <span class="skill-tag">Personal Branding</span>
+        <span class="skill-tag">Presenteren</span>
+        <span class="skill-tag">Copywriting</span>
+      </div>
+
+      <h3>Tools &amp; Software</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Microsoft Office</span>
+        <span class="skill-tag">CATS (ATS)</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">Google Workspace</span>
+        <span class="skill-tag">LinkedIn Sales Navigator</span>
+      </div>
+
+      <h3>Soft skills</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Communicatief sterk</span>
+        <span class="skill-tag">Snel aanpassen</span>
+        <span class="skill-tag">Doorzetter</span>
+        <span class="skill-tag">Analytisch denken</span>
+        <span class="skill-tag">Oplossingen vinden</span>
+        <span class="skill-tag">Teamplayer</span>
+        <span class="skill-tag">Leiderschap</span>
+      </div>
+    </div>
+
+    <!-- Projecten & opdrachten -->
+    <div class="card">
+      <h2><span class="icon">📁</span> Projecten &amp; opdrachten</h2>
+      <div class="portfolio-grid">
+
+        <div class="portfolio-item">
+          <div class="pi-icon">🗺️</div>
+          <div class="pi-title">Infographic over mezelf</div>
+          <div class="pi-desc">Visuele samenvatting van mijn waarden, persoonlijkheid, talenten, SWOT-analyse en POP. Gemaakt voor PIO2 module 3.</div>
+          <a href="Keanu_Van_den_Bergh_PIO2_Infographic_v2.pdf" target="_blank" class="pi-tag">📄 Bekijk PDF</a>
+        </div>
+
+        <div class="portfolio-item">
+          <div class="pi-icon">📝</div>
+          <div class="pi-title">CV – Professioneel profiel</div>
+          <div class="pi-desc">Volledig opgemaakt CV gericht op B2B sales en marketing functies. Aangepast per sollicitatie op basis van de vacature.</div>
+          <a href="CV_Keanu_Van_den_Bergh.pdf" target="_blank" class="pi-tag">📄 Bekijk CV</a>
+        </div>
+
+        <div class="portfolio-item">
+          <div class="pi-icon">✉️</div>
+          <div class="pi-title">Motivatiebrief – Alken-Maes</div>
+          <div class="pi-desc">Gerichte sollicitatiebrief voor een stage bij Alken-Maes / Heineken Belgium. Contact: Eva Schildermans (HR Business Partner).</div>
+          <a href="Motivatiebrief_Alken_Maes_Keanu_Van_den_Bergh.pdf" target="_blank" class="pi-tag">📄 Bekijk brief</a>
+        </div>
+
+        <div class="portfolio-item">
+          <div class="pi-icon">✉️</div>
+          <div class="pi-title">Motivatiebrief – Faktion</div>
+          <div class="pi-desc">Motivatiebrief voor een stage bij Faktion, een Antwerps tech- en datascience bureau.</div>
+          <a href="Motivatiebrief_Faktion_Keanu_Van_den_Bergh.pdf" target="_blank" class="pi-tag">📄 Bekijk brief</a>
+        </div>
+
+        <div class="portfolio-item">
+          <div class="pi-icon">✉️</div>
+          <div class="pi-title">Motivatiebrief – Intigriti</div>
+          <div class="pi-desc">Sollicitatiebrief voor een stagebaan bij Intigriti, een groeiend Antwerps cybersecurity bedrijf.</div>
+          <a href="Motivatiebrief_Intigriti_Keanu_Van_den_Bergh.pdf" target="_blank" class="pi-tag">📄 Bekijk brief</a>
+        </div>
+
+        <div class="portfolio-item">
+          <div class="pi-icon">💼</div>
+          <div class="pi-title">Portfolio PIO2</div>
+          <div class="pi-desc">Volledig portfolio opgesteld voor het vak Professionele Identiteit en Omgeving 2. Bevat reflecties, netwerkoverzicht en sollicitatielog.</div>
+          <span class="pi-tag">📚 Schoolopdracht</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Sollicitatielog -->
+    <div class="card">
+      <h2><span class="icon">📬</span> Sollicitatielog – WPL1</h2>
+      <p style="margin-bottom:16px; color:var(--grey); font-size:.9rem;">Een overzicht van mijn sollicitaties voor werkplekleren. Ik bouw dit actief verder uit via LinkedIn en netwerk.</p>
+      <div style="overflow-x:auto;">
+        <table class="sollicitatie-table">
+          <thead>
+            <tr>
+              <th>Bedrijf</th>
+              <th>Sector</th>
+              <th>Contactpersoon</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Intigriti</strong></td>
+              <td>Cybersecurity</td>
+              <td>Rivka Rooze – People Business Partner</td>
+              <td><span class="status-badge status-sent">Verstuurd</span></td>
+            </tr>
+            <tr>
+              <td><strong>Alken-Maes / Heineken Belgium</strong></td>
+              <td>FMCG / Dranken</td>
+              <td>Eva Schildermans – HR Business Partner</td>
+              <td><span class="status-badge status-sent">Verstuurd</span></td>
+            </tr>
+            <tr>
+              <td><strong>Faktion</strong></td>
+              <td>Tech / Data</td>
+              <td>Via LinkedIn</td>
+              <td><span class="status-badge status-sent">Verstuurd</span></td>
+            </tr>
+            <tr>
+              <td><strong>Uman.ai</strong></td>
+              <td>SaaS / AI</td>
+              <td>Charles Boutens – Head of Growth</td>
+              <td><span class="status-badge status-open">In opvolging</span></td>
+            </tr>
+            <tr>
+              <td><strong>Dstny</strong></td>
+              <td>Tech / Telecom</td>
+              <td>Marjanne Coupé – Sr. Recruiter</td>
+              <td><span class="status-badge status-open">In opvolging</span></td>
+            </tr>
+            <tr>
+              <td><strong>Duvel Moortgat</strong></td>
+              <td>FMCG / Dranken</td>
+              <td>Sofie Goemaere – Talent Acquisition</td>
+              <td><span class="status-badge status-open">In opvolging</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Netwerk -->
+    <div class="card">
+      <h2><span class="icon">🤝</span> Mijn netwerk in kaart</h2>
+      <p style="margin-bottom:16px;">Ik beschik over een gevarieerd professioneel netwerk dat ik actief inzet bij mijn zoektocht naar een stageplaats.</p>
+      <div class="netwerk-grid">
+        <div class="netwerk-item">
+          <div class="ni-label">🍹 Campari Group</div>
+          <div class="ni-desc">Directe contacten in de FMCG/drankenmarkt. Kunnen doorverwijzen naar openstaande vacatures in de sector.</div>
+        </div>
+        <div class="netwerk-item">
+          <div class="ni-label">🔷 SQUARE CITY</div>
+          <div class="ni-desc">Breed netwerk in consulting, IT en business development. Stefanie Walbers heeft me al aanbevolen op LinkedIn.</div>
+        </div>
+        <div class="netwerk-item">
+          <div class="ni-label">🏛️ Jong NVA Antwerpen</div>
+          <div class="ni-desc">Netwerk van jonge professionals en beleidsmakers. Mogelijke connecties naar bedrijven in Antwerpen.</div>
+        </div>
+        <div class="netwerk-item">
+          <div class="ni-label">⚓ Zeescouts Antwerpen</div>
+          <div class="ni-desc">Medeleiders die ook actief zijn in het professionele leven. Toont betrokkenheid en leiderschap.</div>
+        </div>
+        <div class="netwerk-item">
+          <div class="ni-label">🎓 AP Hogeschool</div>
+          <div class="ni-desc">Docenten met contacten in het werkveld en medestudenten die ervaringen over stageplekken delen.</div>
+        </div>
+        <div class="netwerk-item">
+          <div class="ni-label">🌐 LinkedIn – 1.760+ connecties</div>
+          <div class="ni-desc">Groot netwerk van oud-collega's, recruiters en professionals in sales, marketing en tech.</div>
+        </div>
+      </div>
+      <a class="btn" href="https://www.linkedin.com/in/k%C3%A9anu/" target="_blank">Bekijk mijn LinkedIn →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGINA 3 — MIJN BLOG
+══════════════════════════════════════════════════════════════ -->
+<div id="blog" class="page">
+
+  <div class="hero">
+    <div class="hero-avatar-fallback" style="margin-bottom:20px;">✍️</div>
+    <h1>Mijn Blog</h1>
+    <p class="subtitle">
+      Mijn ervaringen, inzichten en lessen tijdens werkplekleren — hier wekelijks bijgehouden.
+    </p>
+  </div>
+
+  <div class="content">
+    <div class="card">
+      <h2><span class="icon">📝</span> WPL-dagboek</h2>
+      <div id="blog-posts-container"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    © 2026 Kéanu Van den Bergh &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/k%C3%A9anu/" target="_blank">LinkedIn</a>
+    &nbsp;·&nbsp;
+    Graduaat Marketing- en Communicatiesupport · AP Hogeschool Antwerpen
+  </p>
+</footer>
+
+<script>
+  // ════════════════════════════════════════════════════════════
+  // BLOG — voeg hier wekelijks een nieuwe post toe tijdens WPL1
+  //
+  // Kopieer het blok hieronder, verwijder de //-tekens en vul in:
+  //
+  // {
+  //   date:    'Week 1 – september 2026',
+  //   title:   'Eerste indrukken van mijn stageplaats',
+  //   content: 'Schrijf hier je blogpost. Je mag gewoon tekst gebruiken, ' +
+  //            'of HTML-tags zoals <strong>vet</strong> of <br> voor een nieuwe regel.',
+  // },
+  //
+  // Nieuwste post bovenaan = omgekeerde volgorde in de array.
+  // ════════════════════════════════════════════════════════════
+  const BLOG_POSTS = [
+    // Plak hier je posts zodra WPL1 begint — zie het voorbeeld hierboven.
+  ];
+
+  function renderBlog() {
+    const container = document.getElementById('blog-posts-container');
+    if (!container) return;
+    if (BLOG_POSTS.length === 0) {
+      container.innerHTML = `
+        <div class="blog-coming">
+          <div class="big-icon">🚀</div>
+          <h3>Binnenkort: mijn WPL-dagboek</h3>
+          <p>Tijdens Werkplekleren 1 hou ik hier wekelijks bij wat ik leer, welke uitdagingen ik tegenkom en hoe ik groei als professional.</p>
+          <p style="margin-top:14px;color:var(--grey);font-size:.85rem;">Stay tuned. 👀</p>
+        </div>`;
+      return;
+    }
+    container.innerHTML = [...BLOG_POSTS].reverse().map(post => `
+      <div class="blog-entry">
+        <div class="be-date">${post.date}</div>
+        <div class="be-title">${post.title}</div>
+        <div class="be-preview">${post.content}</div>
+      </div>`).join('');
+  }
+
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const btns = document.querySelectorAll('.nav-links button');
+    const pages = ['over', 'portfolio', 'blog'];
+    btns[pages.indexOf(id)].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (id === 'blog') renderBlog();
+  }
+
+  renderBlog();
+</script>
+
+</body>
+</html>
