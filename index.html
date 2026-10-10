@@ -431,6 +431,13 @@
       font-size: .9rem;
       line-height: 1.6;
     }
+    .blog-entry .be-preview h4 {
+      color: var(--navy);
+      font-size: .98rem;
+      font-weight: 700;
+      margin: 18px 0 6px;
+    }
+    .blog-entry .be-preview p { margin-bottom: 10px; }
     .blog-coming {
       text-align: center;
       padding: 50px 20px;
@@ -923,6 +930,34 @@
   // ════════════════════════════════════════════════════════════
   const BLOG_POSTS = [
     // Plak hier je posts zodra WPL1 begint — zie het voorbeeld hierboven.
+    {
+      date: 'Week 1 · 5 tot 7 oktober 2026',
+      title: 'Week 1 bij Odoo: van onboardingvideo\'s naar mijn eerste eigen kassa',
+      content: `
+<p>Maandag 5 oktober stapte ik binnen op het kantoor van Odoo in Antwerpen. Eerste opdracht: mijn laptop installeren. Tegen het einde van de dag wist ik al dat ik de komende weken vooral cafés, restaurants en frituren ga leren kennen.</p>
+
+<h4>Odoo in vijf zinnen</h4>
+<p>Odoo is een Belgisch softwarebedrijf dat alles-in-één bedrijfssoftware maakt, vooral voor kmo's. In plaats van één groot pakket bestaat Odoo uit apps die naadloos op elkaar aansluiten: kassa, boekhouding, CRM, voorraad, website, reservaties en nog veel meer. Een ondernemer start met wat hij nodig heeft en breidt uit wanneer hij groeit. De missie van oprichter Fabien Pinckaers is om het potentieel van bedrijven vrij te maken met tools die gebruikers graag gebruiken. Odoo zit in de IT-sector, en de expertise is eigenlijk één ding: alles wat een bedrijf nodig heeft, samenbrengen in één systeem.</p>
+
+<h4>Het Horeca-project</h4>
+<p>Odoo kiest bewust een paar sectoren om zich op te focussen, en horeca is er daar één van. Het doel is ambitieus: dat cafés, restaurants, bars en frituren in heel België met Odoo gaan werken. Daarvoor is er een volledig team opgezet, van sales tot experts die de software bij de klant installeren.</p>
+
+<h4>Mijn plek in de organisatie</h4>
+<p>Ik werk in Sales, en daar is een duidelijke splitsing. Inside Sales verkoopt op afstand, via telefoon en video. Outside Sales, waar ik zit, gaat langs bij de zaak zelf. Binnen Outside Sales zit ik in de squad Horeca, met een squad leader die ons coacht en opvolgt. Tekent een klant, dan nemen de Business Analysts het over om Odoo op maat van de zaak in te richten, en een netwerkexpert komt de hardware installeren. De structuur is erg plat, met weinig lagen tussen ons en de directie.</p>
+
+<h4>En marketing en communicatie?</h4>
+<p>Odoo heeft een aparte marketingafdeling, maar in mijn team zit marcom verrassend dicht bij het werk. Onze missie is niet alleen verkopen, maar ook de naamsbekendheid en zichtbaarheid van Odoo in de horeca vergroten. Elke deur waar ik binnenstap, is dus ook een vorm van persoonlijke communicatie. En elke demo die we bouwen, is eigenlijk een presentatie op maat van één zaak.</p>
+
+<h4>Wat deed ik deze week?</h4>
+<p>Dag één stond in het teken van onboarding: HR-intro, accounts aanmaken en een presentatie over onze rol, missie en regio's. Daarna dook ik in hoe een restaurant echt werkt, van reservatie tot betaling, en wie er allemaal bij betrokken is: keuken, zaal, leveranciers, boekhouder en zelfs het FAVV. Dinsdag en woensdag volgden video's en oefeningen over de kassa (PoS), van apparatenbeheer tot de praktijk in een restaurant, plus een eerste kennismaking met CRM, facturatie en boekhouding.</p>
+
+<h4>De sfeer</h4>
+<p>Wat me deze week het meest opviel, is hoe los en toegankelijk alles aanvoelt. Het team is vrij jong, en dat merk je: niemand doet moeilijk als je een vraag stelt. Op de werkvloer wissel je vlot tussen Nederlands en Engels, afhankelijk van met wie je praat. We werken van 9 tot half zes, met een uur middagpauze in de eetzaal. Tussendoor staat er ook een pingpongtafel, en dat helpt om snel met collega's van andere teams aan de praat te raken.</p>
+
+<h4>Wat komt er?</h4>
+<p>De komende dagen staan de laatste workshops op het programma: hoe je een eerste gesprek aanpakt in een drukke zaak, hoe je een klant kwalificeert, hoe je een demo opbouwt als een verhaal, en wie onze concurrenten zijn. Daarna gaan we zelf de baan op. Ik prospecteer dan in mijn eigen regio Antwerpen, met de fiets, langs horecazaken. Wat ik daar leer, volg ik op in het CRM, en voor geïnteresseerde zaken bouw ik een demo op maat. Daar ben ik eigenlijk al mee bezig: een kassademo voor een café.</p>
+`,
+    },
   ];
 
   function renderBlog() {
